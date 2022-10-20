@@ -1,0 +1,3 @@
+function afficherAgent(){
+    alert("Salut")
+}
