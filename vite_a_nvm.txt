@@ -1,0 +1,60 @@
+Lien du tuto : https://github.com/laravel/vite-plugin/blob/main/UPGRADE.md#migrating-from-vite-to-laravel-mix
+
+Migration de Vite vers Laravel Mix
+Installer le mélange Laravel
+Tout d'abord, vous devrez installer Laravel Mix à l'aide du gestionnaire de packages npm de votre choix :
+
+npm install --save-dev laravel-mix
+Configurer le mélange
+
+Créez un webpack.mix.js fichier à la racine de votre projet :
+
+const path = require('path');
+
+module.exports = {
+    output: {
+    filename: 'my-first-webpack.bundle.js',
+    },
+    module: {
+    rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+    },
+};
+
+
+    
+Mettez à jour vos scripts NPM danspackage.json :
+
+  "scripts": {
+-     "dev": "vite",
+-     "build": "vite build"
++     "dev": "npm run development",
++     "development": "mix",
++     "watch": "mix watch",
++     "watch-poll": "mix watch -- --watch-options-poll=1000",
++     "hot": "mix watch --hot",
++     "prod": "npm run production",
++     "production": "mix --production"
+  }
+  
+  
+  Mettre à jour les variables d'environnement
+Vous devrez mettre à jour les variables d'environnement qui sont explicitement exposées dans vos .envfichiers et dans les environnements d'hébergement tels que Forge pour utiliser le MIX_préfixe au lieu deVITE_ :
+
+- VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+- VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
++ MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
++ MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+
+  
+  Supprimer Vite et le plugin Laravel
+Vite et le plugin Laravel peuvent maintenant être désinstallés :
+
+npm remove vite laravel-vite-plugin
+Ensuite, vous pouvez supprimer votre fichier de configuration Vite :
+
+rm vite.config.js
+Vous pouvez également supprimer les .gitignorechemins que vous n'utilisez plus :
+
+- /bootstrap/ssr
+- /public/build

@@ -79,6 +79,9 @@
         </div>
       </div>
     </div><!-- /.container-fluid -->
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 30%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
   </section>
   <!-- /.navbar -->
   <!-- Content Wrapper. Contains page content -->
@@ -91,15 +94,15 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header " style=" background-color: #FF5E0E">
-                <h2 class="floate-center text-uppercase text-uppercase">Voici les types de service que nous vous proposons</h2>
+              <div class="card-header " style=" background-color: #f0eeed">
+                <h2 class="floate-center text-uppercase text-uppercase text-center">Voici les types de service que nous vous proposons</h2>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row  mt-6" >
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative">
-                      <img src="/imageSite2.webp" alt="Photo 1" class="img-fluid">
+                      <img src="/imageSite2.webp" style="width: 910px; height: 345px;" alt="Photo 1" class="img-fluid">
                       <div class="ribbon-wrapper ribbon-lg">
                         <div class="ribbon bg-success text-lg">
                          Nounous
@@ -163,7 +166,7 @@
                   </div>
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative">
-                      <img src="/conducteur.webp" alt="Photo 2" class="img-fluid">
+                      <img src="/conducteur.webp" style="width: 910px; height: 345px;" alt="Photo 2" class="img-fluid">
                       <div class="ribbon-wrapper ribbon-xl">
                         <div class="ribbon bg-warning text-lg">
                           Chauffeur
@@ -196,7 +199,7 @@
                   </div>
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative" style="min-height: 180px;">
-                      <img src="/imageSite1.webp" alt="Photo 3" class="img-fluid">
+                      <img src="/imageSite1.webp" style="width: 910px; height: 345px;" alt="Photo 3" class="img-fluid">
                       <div class="ribbon-wrapper ribbon-xl">
                         <div class="ribbon bg-danger text-xl">
                           Menage

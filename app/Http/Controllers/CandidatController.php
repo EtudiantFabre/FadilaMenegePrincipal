@@ -13,6 +13,7 @@ use App\Models\PersonneAprevenir;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use PDF;
 
 class CandidatController extends Controller
@@ -160,52 +161,53 @@ class CandidatController extends Controller
 
        //dd($experiences);
 
-       $experiences = ExperienceDuCandidat::all()->where('candidat', '=', $candidat->id_candidat);
-       $personeAprevenirs = PersonneAprevenir::all()->where('id_candidat', '=', $candidat->id_candidat);
-       $key = 0;
-       if (count($personeAprevenirs) == 0) {
-        $personeAprevenir = 0;
-       } elseif (count($experiences) == 0) {
-        $experience=0;
-            while(! isset($personeAprevenirs[$key])) {
-                $key++;
-            }
-            $personeAprevenir = $personeAprevenirs[$key];
-
-       } else {
-            while(! isset($experiences[$key])) {
-                $key++;
-            }
-
-            $experience = $experiences[$key];
-
-            $key = 0;
-
-            while(! isset($personeAprevenirs[$key])) {
-                $key++;
-            }
-
-            $personeAprevenir = $personeAprevenirs[$key];
-
-       }
-
-       return view('candidats.show',compact('candidat','experience','personeAprevenir'));
-
-
-       /*if (count($experiences) == 0) {
+        $experiences = ExperienceDuCandidat::all()->where('candidat', '=', $candidat->id_candidat);
+        $personeAprevenirs = PersonneAprevenir::all()->where('id_candidat', '=', $candidat->id_candidat);
+        $key = 0;
+        if (count($personeAprevenirs) == 0) {
+            $personeAprevenir = 0;
+        } else {
+            if (count($experiences) == 0) {
             $experience=0;
-            return view('candidats.show',compact('candidat','experience'));
+                while(! isset($personeAprevenirs[$key])) {
+                    $key++;
+                }
+                $personeAprevenir = $personeAprevenirs[$key];
 
-       }else{
-            while(! isset($experiences[$key])) {
-                $key++;
+            } else {
+                while(! isset($experiences[$key])) {
+                    $key++;
+                }
+
+                $experience = $experiences[$key];
+
+                $key = 0;
+
+                while(! isset($personeAprevenirs[$key])) {
+                    $key++;
+                }
+
+                $personeAprevenir = $personeAprevenirs[$key];
             }
+        }
 
-            $experience = $experiences[$key];
+        return view('candidats.show',compact('candidat','experience','personeAprevenir'));
 
-       }
 
-       return view('candidats.show',compact('candidat','experience'));*/
+        /*if (count($experiences) == 0) {
+                $experience=0;
+                return view('candidats.show',compact('candidat','experience'));
+
+        }else{
+                while(! isset($experiences[$key])) {
+                    $key++;
+                }
+
+                $experience = $experiences[$key];
+
+        }
+
+        return view('candidats.show',compact('candidat','experience'));*/
 
 
     }
@@ -385,9 +387,9 @@ class CandidatController extends Controller
                 $personeAprevenirs->save();
 
            // }
-           $suppr = ExperienceDucandidat::where('candidat','=',$candidat->id_candidat)->first();
-           $suppr->delete();
-           $candidat->delete();
+            $suppr = ExperienceDucandidat::where('candidat','=',$candidat->id_candidat)->first();
+            $suppr->delete();
+            $candidat->delete();
 
         }
         return redirect('candidats')->with('flash_message', 'Candidat récurté!');

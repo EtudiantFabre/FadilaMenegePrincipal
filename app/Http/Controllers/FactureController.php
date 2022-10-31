@@ -71,7 +71,7 @@ class FactureController extends Controller
         $pdf = PDF::loadView('factures.show', compact('facture'));
 
         //->with('pdf', $pdf->download(Str::slug($facture->total_ttc).".pdf"));
-        return $pdf->download(Str::slug($facture->total_ttc).".pdf");
+        return $pdf->download(Str::slug($facture->total_ttc) . ".pdf");
     }
 
     /**
