@@ -45,18 +45,59 @@
       <div class="container-fluid">
         <div class="card-header " style=" background-color: #f0eeed">
           <h2 class="floate-center text-uppercase text-uppercase text-center">Liste des agents</h2>
+      
+          <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnFin">
+              Position
+            </button>
+          </div>
+
+          <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mx-auto" style="color: rgb(0, 0, 0)" id="exampleModalLabel">INFOS POUR LA LOCALISATION</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body container">
+                        <form class="">
+                          <strong class="text-center"><h1 class="status"></h1></strong>
+                          <input type="hidden" class="positionRetrouver" name="position"/>
+                          <div id="map" height="300" width="100%"></div>
+                          <!--iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d9728.542118052746!2d1.1258635!3d9.0019962!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sfr!2stg!4v1664641130748!5m2!1sfr!2stg" height="300" width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe-->
+                          <p></p>
+                          <button type="button" class="retPosition btn btn-danger d-grid gap-2 mx-auto col-6">TROUVER MA POSITION ACTUEL</button>
+                          <script src="js/position.js"></script>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                      <div class="d-grid gap-2 col-6 mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          <input type="submit" class="btn btn-primary" id="continuer" data-bs-dismiss="modal" value="Continuer" disabled/>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
         </div>
       
         <div class="card card-solid">
           <div class="card-body pb-0">
             <div class="row">
               @foreach ($agents as $agt)
-                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                <div class="col-12 col-sm-6 col-md-4 da-flex align-items-stretch flex-column">
                   <form action="{{route('clients.prospect')}}" method="POST">
                     @csrf
                     @method('post')
                     <input type="hidden" name="service" value="{{$service}}">
-                    <input type="hidden" name="position" value="{{$position}}">
+                    <?
+                      if (isset('position')){ ?>
+                        <input type="hidden" name="position" value="{{$position}}"><?
+                      }  
+                    ?>
+
+                    
                     <div class="card bg-light d-flex flex-fill">
                       <div class="card-header text-muted border-bottom-0">
                         {{strtoupper($agt->poste_candidate)}}

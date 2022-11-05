@@ -247,10 +247,11 @@ class AgentController extends Controller
 
         $request->validate([
             "service" => "required",
-            "position" => "required",
+            #"position" => "required",
         ]);
 
-        $agents = DB::select("select * from agents where ville_residence like '%{$request->position}%' and poste_candidate = '{$request->service}'");
+        //$agents = DB::select("select * from agents where ville_residence like '%{$request->position}%' and poste_candidate = '{$request->service}'");
+        $agents = Agent::all()->where('poste_candidate', '=', strtoupper($request->service));
         //print_r("DB::select(select * from agents where ville_residence like '%_{$request->position}_%')");
 
         $nbreAgts = count($agents);
@@ -260,25 +261,25 @@ class AgentController extends Controller
         $toutAgt = Agent::all();
         if ($nbreAgts == 0) {
             /*
-             notify()->success("Aucun agent disponible.");
-             notify()->success('Welcome to Laravel Notify ⚡️') or notify()->success('Welcome to Laravel Notify ⚡️', 'My custom title')
-             connectify('success', 'Connection Found', 'Success Message Here')
-             drakify('success') // for success alert
-             or
-             drakify('error') // for error alert
-             smilify('success', 'You are successfully reconnected')
-             emotify('success', 'You are awesome, your data was successfully created')
-             notify()->preset('common-notification')
-             notify()->preset('common-notification', ['title' => 'This is the overridden title'])
-             'theme' => env('NOTIFY_THEME', 'dark'),
+            notify()->success("Aucun agent disponible.");
+            notify()->success('Welcome to Laravel Notify ⚡️') or notify()->success('Welcome to Laravel Notify ⚡️', 'My custom title')
+            connectify('success', 'Connection Found', 'Success Message Here')
+            drakify('success') // for success alert
+            or
+            drakify('error') // for error alert
+            smilify('success', 'You are successfully reconnected')
+            emotify('success', 'You are awesome, your data was successfully created')
+            notify()->preset('common-notification')
+            notify()->preset('common-notification', ['title' => 'This is the overridden title'])
+            'theme' => env('NOTIFY_THEME', 'dark'),
              */
             connectify('error', 'Aucun agent !', "Il n'y a pas d'agent " . strtoupper($request->service) . " dans la base !");
-            return view('agents.listeAgents')->with('service', $request->service)->with('agents', $agents);
+            return view('agents.listeAgents')->with('agents', $agents);//->with('service', $request->service)
         }
         else {
             notify()->success("Liste des agents ayant pour ville de résidence {$request->position} !");
         }
-        return view('agents.listeAgents')->with('agents', $agents)->with('service', $request->service)->with('position', $request->position); //->with('agents', $agents);
+        return view('agents.listeAgents')->with('agents', $agents)->with('service', $request->service); //->with('agents', $agents); ->with('position', $request->position)
 
     }
 
