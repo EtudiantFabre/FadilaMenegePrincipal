@@ -48,15 +48,22 @@ Route::get('/', function () {
     return view('welcome');
 })->name('accueil');
 
+Route::fallback(function(){
+	return view("404");
+});
+
+Route::fallback(function(){
+	return view("419");
+});
 
 
-Route::get('/test-contact', function () {
+/*Route::get('/test-contact', function () {
     return new App\Mail\Contact([
     'nom' => 'Durand',
     'email' => 'fabricetoyi87@gmail.com',
     'message' => 'Je voulais te dire que tout viens de commencer !!'
     ]);
-});
+});*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class , 'index'])->name('home');
