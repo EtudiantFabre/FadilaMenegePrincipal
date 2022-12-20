@@ -32,7 +32,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('client')->references('id_client')->on('clients')->onDelete('cascade')->onUpdate('cascade');
+           $table->foreign('client')->references('id_client')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('agent')->references('id_agent')->on('agents')->onDelete('cascade')->onUpdate('cascade');
         });
     }

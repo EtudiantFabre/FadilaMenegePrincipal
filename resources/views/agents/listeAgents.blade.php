@@ -5,7 +5,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -32,7 +32,11 @@
   
   <!-- Fichiers Javascript -->
   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
-	<script type="text/javascript">
+
+  <!-- leafletjs CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
+  <!-- leafletjs JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -79,17 +83,24 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body container">
-                        
-
-
+                      
+                      <!--div class="input-group mb-3">
+                        <p type="text" class="form-control" name="ville" id="villerec"></p>
+                        <button class="btn btn-primary" onclick="chercher()" id="button-addon2" disabled>Chercher</button>
+                      </div-->
+                      <div>
+                        <p class="text-center" name="ville" id="villerec">Ville</p>
+                        <input type="text" hidden name="position">
+                      </div>
 
                       <div id="maCarte"></div>
                         
                         <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
-                        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
-                        crossorigin=""></script>
+                          integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+                          crossorigin="">
+                        </script>
 
-                        <script type="js">
+                        <script>
 
                           function Geo(position){
                             lat = position.coords.latitude;
@@ -123,21 +134,41 @@
                           function loadMap(lat, long) {
                             /*alert(lat);
                             alert(long);*/
-                            let carte = L.map('maCarte').setView([lat, long], 10)
+                            carte = L.map('maCarte').setView([lat, long], 10);
                             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                               minZoom: 1,  
                               maxZoom: 20,
                                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                             }).addTo(carte);
-
-                            var marqueur = L.marker(lat, long).addTo(carte);
+                            chercher();
 
                             // Ajout du titre sur le marqueur :
                             //const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguageRequested=fr`
                             
-
+                            /*var popup = L.popup()
+                            .setLatLng([lat, long])
+                            .setContent("Voici votre position actuel")
+                            .openOn(carte);*/
 
                           }
+
+
+                          function chercher(){    
+                            //alert("Je suis dans cherché."); 
+
+                            const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguageRequested=fr`
+                            fetch(geoApiUrl)
+                              .then(res => res.json())
+                              .then(data => {
+                                //alert(lat + ' et ' + long);
+                                console.log(data);
+                                document.getElementById('villerec').innerHTML = "<h2>" + data.city + "</h2>";// + "votre ville";
+                                //document.getElementById('btnGroupDrop1').innerHTML = document.getElementById('btnGroupDrop1').textContent+ " : " + "<h3>" + data.city + "</h3>";
+                                let marqueur = L.marker(lat, long).addTo(carte);
+                                marqueur.bindPopup(data.countryName).openPopup();
+                            });
+                          }
+
 
                           if(navigator.geolocation){
                             navigator.geolocation.getCurrentPosition(Geo, erreurGeo, {maximunAge : 120000});                      
@@ -145,12 +176,11 @@
                             alert("Vous n'avez pas sélectionner de position !!!");
                           }
                           
-                          
                         </script>
                     </div>
                     <div class="modal-footer">
                       <div class="d-grid gap-2 col-6 mx-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          <input type="submit" class="btn btn-primary" id="continuer" data-bs-dismiss="modal" value="Continuer" disabled/>
+                          <input class="btn btn-primary" id="continuer"  data-bs-dismiss="modal" value="Continuer"/>
                       </div>
                     </div>
                 </div>
@@ -163,14 +193,11 @@
           <div class="card-body pb-0">
             <div class="row">
               @foreach ($agents as $agt)
-                <div class="col-12 col-sm-6 col-md-4 da-flex align-items-stretch flex-column">
+                <div hi class="valpos col-12 col-sm-6 col-md-4 da-flex align-items-stretch flex-column">
                   <form action="{{route('clients.prospect')}}" method="POST">
                     @csrf
                     @method('post')
                     <input type="hidden" name="service" value="{{$service}}">
-                    <??>
-
-                    
                     <div class="card bg-light d-flex flex-fill">
                       <div class="card-header text-muted border-bottom-0">
                         {{strtoupper($agt->poste_candidate)}}
@@ -182,7 +209,8 @@
                             <input type="hidden" name="id_agent" value="{{$agt->id_agent}}">
                             <p class="text-muted text-sm"><b>Expériences: </b> Aucune </p>
                             <ul class="ml-4 mb-0 fa-ul text-muted">
-                              <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Addresse: {{$agt->ville_residence.", ".$agt->quartier.", ".$agt->rue}}</li>
+                              <input class="ville_de_residence" type="text" hidden name="ville_de_residence" value="{{ $agt->ville_residence }}">
+                              <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Adresse: {{$agt->ville_residence.", ".$agt->quartier.", ".$agt->rue}}</li>
                               <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Tel #: {{$agt->telephone}}</li>
                               <li class="small"><span class="fa-li"><i class="fa fa-money" aria-hidden="true"></i></span> Prétention salarial : <span class="text-danger required" aria-hidden="true"><h6>{{$agt->pretention_salarial}} FCFA</h6></span></li>
                             </ul>
@@ -204,7 +232,7 @@
                           </a>
 
                           <script>
-                            $("#{{$agt->id_agent}}").click(function() {
+                            /*$("#{{$agt->id_agent}}").click(function() {
                               let id = $(this).attr("id");
                               alert(id);
                               alert("debut");
@@ -217,147 +245,8 @@
                               nvllepage.resizeBy(-200, 100);
                               nvllepage.resizeTo(500, 500);
                                                           
-                            }
+                            }*/
                           </script>
-                          <!-- Modal -->
-                          
-                          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-                            <div class="modal-dialog modal-xl" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">#Information de l'agent {{strtoupper($agt->nom)." ".strtoupper($agt->prenom)}}</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <div class="container rounded-4  shadow-lg p-3 mb-5 bg-div">
-
-                                        <div class="container p-5">
-                                            <div class="class row">
-                                                <div class="class col-lg-4 bg-dark text-white text-center py-4">
-                                                    <div class="header-left">
-                                                      <img class="img-circle img-fluid " src="{{ asset('storage/'.$agt->avatar)}}" style="width: 100px; height: 100px;" >  
-                                                        <h4 class="lead text-uppercase text-white-5 mb-4">{{ $agt->poste_candidate }}</h4>
-                                                    </div>
-                                        
-                                                    <div>
-                                                        <h5 class="text-uppercase bg-white text-dark py-2 rounded-pill">Informations personnel</h5>
-                                        
-                                                        <ul class="list-unstyled text-white-50 ml-5 py-2 ">
-                                                            <li class="list-item">
-                                                            {{ 'Date naissance : '.$agt->date_naissance }}
-                                                            </li>
-                                                            <li class="list-item">
-                                                                {{ 'Lieu naissance : '.$agt->lieu_naissance }}
-                                                            </li>
-                                                            <li class="list-item">
-                                                                {{'Genre : '. $agt->genre}}
-                                                            </li>
-                                        
-                                                            <li class="list-item">
-                                                                {{'Nationalité : '. $agt->nationalite}}
-                                                            </li>
-                                                            <li class="list-item">
-                                                                {{'Situation matrimoniale : '. $agt->situation_familiale}}
-                                                            </li>
-                                                            <li class="list-item">
-                                                                {{'Nombre d\'enfants  : '. $agt->enfants_encharge}}
-                                                            </li>
-                                                            <li class="list-item">
-                                                                {{'Profession actuelle  : '. $agt->profession}}
-                                                            </li>
-                                                            <li class="list-item">
-                                                                {{'Horaire de travail sohaité  : '. $agt->horaire_travail_souhaite}}
-                                                            </li>
-                                        
-                                                        </ul>
-                                                    </div>
-                                        
-                                        
-                                                    <div>
-                                                        <h5 class="text-uppercase bg-white text-dark py-2 rounded-pill">Adresse</h5>
-                                        
-                                                        <ul class="list-unstyled text-white-50 ml-5 py-2">
-                                                            <li class="list-item">
-                                                                {{ 'Contatct : '.$agt->telephone }}
-                                                            </li>
-                                                            <li class="list-item">
-                                                                {{'Email : '.$agt->email }}
-                                                            </li>
-                                                            <li class="list-item">
-                                                                {{ 'Ville résidence : '.$agt->ville_residence }}
-                                                            </li>
-                                                            <li class="list-item">
-                                                                {{ 'Quartier : '.$agt->quartier}}
-                                                            </li>
-                                                            <li class="list-item">
-                                                                {{ 'Rue : '.$agt->rue }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                        
-                                                    <div>
-                                                        <h5 class="text-uppercase bg-white text-dark py-2 rounded-pill">Objectif</h5>
-                                                        <ul class="list text-white-50 text-ml-5 py-2 text-left text-capitalize">
-                                                            <li class="list-item">
-                                                                {{ $agt->objectif }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 bg-light text-dark py-5 px-5">
-                                                    <div class="header-right">
-                                                        <h4 class="text-uppercase">Qualité personnel</h4>
-                                                        <hr>
-                                                        <p>{{ $agt->qualite_personnelles }}</p>
-                                                    </div>
-                                        
-                                                    <div>
-                                                        <h4 class="text-uppercase">Expériences</h4>
-                                                        <hr>
-                                                        <!--ul class="list">
-                                                            <li class="tist-item">
-                                                                <h5 class="display-6 text-uppercase">online media marketing</h5>
-                                                                <h6 class="text-uppercase text-black-50">company name / 2020-present</h6>
-                                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem nobis consequatur commodi consectetur iste, suscipit natus minima eum! Qui repudiandae tempore ducimus incidunt quaerat minima sapiente sint dolore magnam expedita molestiae, aliquam inventore cupiditate at voluptatem? Esse optio ea velit voluptatum repudiandae labore repellat, consequuntur id harum excepturi, vitae pariatur?</p>
-                                                            </li>
-                                                            <li class="tist-item">
-                                                                <h5 class="display-6 text-uppercase">online media marketing</h5>
-                                                                <h6 class="text-uppercase text-black-50">company name / 2020-present</h6>
-                                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem nobis consequatur commodi consectetur iste, suscipit natus minima eum! Qui repudiandae tempore ducimus incidunt quaerat minima sapiente sint dolore magnam expedita molestiae, aliquam inventore cupiditate at voluptatem? Esse optio ea velit voluptatum repudiandae labore repellat, consequuntur id harum excepturi, vitae pariatur?</p>
-                                                            </li>
-                                                        </ul-->
-                                                    </div>
-                                                    <div class="header-right">
-                                                        <h4 class="text-uppercase">Savoir faire</h4>
-                                                        <hr>
-                                                        <p>{{ $agt->savoir_faire }}</p>
-                                                    </div>
-                                                    <div class="header-right">
-                                                        <h4 class="text-uppercase">Nature contrat</h4>
-                                                        <hr>
-                                                        <p>{{ $agt->nature_contrat }}</p>
-                                                    </div>
-                                                    <div class="header-right">
-                                                        <h4 class="text-uppercase">Disponible à loger</h4>
-                                                        <hr>
-                                                        <p>{{ $agt->disponible_a_loger }}</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vue</button>
-                                                        <!--button type="button" class="btn btn-primary">Save changes</button-->
-                                                    </div>
-                                                </div>
-                                        
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            </div>
-                        </div>
                         </div>
                       </div>
                     </div>
@@ -368,7 +257,7 @@
               
               
           <!-- /.card-body -->
-          <div class="card-footer">
+          <!--div class="card-footer">
             <nav aria-label="Contacts Page Navigation">
               <ul class="pagination justify-content-center m-0">
                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -381,7 +270,7 @@
                 <li class="page-item"><a class="page-link" href="#">8</a></li>
               </ul>
             </nav>
-          </div>
+          </div-->
           <!-- /.card-footer -->
         </div>
         <!-- /.card -->
@@ -398,6 +287,34 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
+<-- Mon script : -->
+
+<script>
+  
+  
+  document.getElementById('continuer').onclick = function(){
+    let lesAgents = document.getElementsByClassName('valpos');
+    let ville = document.getElementById('villerec').innerText.substr(0, 3);
+    console.log(lesAgents[0].querySelector(".ville_de_residence").value);
+    //alert(lesAgents[0].children);
+
+    for (let i = 0; i < lesAgents.length; i++){
+      if (ville != lesAgents[i].querySelector(".ville_de_residence").value.substr(0, 3)){
+        lesAgents[i].hidden = true;
+      }
+    }
+  }
+  document.getElementById('btnGroupDrop1').onchange = function(){
+    alert('je suis là');
+  }
+
+  function trier(){
+    alert("Je fais un tri");
+  }
+</script>
+
+<-- Mon script : -->
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>

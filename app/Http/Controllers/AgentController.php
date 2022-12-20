@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ExperienceDuCandidat;
-use App\Models\PersonneAprevenir;
+use Adrianorosa\GeoLocation\GeoLocation;
 use App\Models\Agent;
 use App\Models\Client;
+use App\Models\ExperienceDuCandidat;
+use App\Models\PersonneAprevenir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\View;
+use Stevebauman\Location\Facades\Location;
+
 
 
 class AgentController extends Controller
@@ -243,7 +246,16 @@ class AgentController extends Controller
     public function ListAgents(Request $request)
     {
 
-        //dd($request);
+        //Test de recuperation de localisation
+
+        /*$ip = '196.170.103.114';
+        $currentUserInfo = Location::get($ip);
+        
+        //$details = GeoLocation::lookup('2.2.2.2');
+
+        dd($currentUserInfo);*/
+
+        
 
         $request->validate([
             "service" => "required",
