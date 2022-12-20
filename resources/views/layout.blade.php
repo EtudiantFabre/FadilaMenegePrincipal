@@ -9,13 +9,6 @@
 
         <title>@yield('title', config('app.name'))</title>
 
-
-
-        
-
-
-
-
     </head>
 
     <body class="form-v10-content">

@@ -58,9 +58,6 @@
                 <!--a class="container fixed-center" href="" style="text-align: center; font-weight: bold; color:#FF5E0E; line-height: 50px;" id="comp-jd97w5lt3label">Candidatez-vous</a-->
                 <!--a class="container fixed-left" href="#" style="text-align: left; color:#FF5E0E; font-weight: bold; line-height: 50px;" id="comp-jd97w5lt3label">Nos services</a-->
 
-
-
-
                 </div>
               </div>
             </nav>
@@ -279,7 +276,6 @@
                                 <option value="CDI">CDI</option>
                                 <option value="Autre">Autre</option>
                             </select>
-
                         </div>
                         <div class="form-row">
                             <select name="horaire_travail_souhaite" id="horaire_travail_souhaite" class="form-control">

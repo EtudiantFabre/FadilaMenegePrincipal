@@ -37,7 +37,7 @@
 <body class="hold-transition sidebar-mini">
   <!-- Navbar -->
 
-  <section class="content-header">
+  <section class="content-header" style="background-color: #d1d0d0">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
@@ -45,13 +45,9 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <!--li class="breadcrumb-item"><a href="{{route('accueil')}}">Accueil</a></li-->
-            <li class="breadcrumb-item active">
-                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                  <i class="fas fa-expand-arrows-alt"></i>
-                </a>
-            </li>
+            <li class="breadcrumb-item"><a href="{{route('accueil')}}">Retour</a></li><br>
           </ol>
+        </div>
         </div>
       </div>
     </div><!-- /.container-fluid -->
@@ -84,16 +80,16 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header " style=" background-color: #FF5E0E">
+              <div class="card-header float-sm-right" style=" background-color: #f7f6f5">
                 <h2 class="floate-center text-uppercase ">Voici les qualités que recherchent nos employeurs</h2>
               </div>
-              <!-- /.card-header -->
+              <!-- /.card-header-->
               <div class="card-body">
-                <div class="row">
+                <!--div class="row">
                     <div class="col-sm-4" id="text">
-                        <div class="position-relative p-3 bg-green" style="height: 180px">
+                        <div class="position-relative p-3 bg-#5f5d5c" style="height: 180px">
                           <div class="ribbon-wrapper ribbon-xl">
-                            <div class="ribbon bg-success">
+                            <div class="ribbon bg-black">
                               Inteligence
                             </div>
                           </div>
@@ -102,9 +98,9 @@
                         </div>
                     </div>
                   <div class="col-sm-4" id="text">
-                    <div class="position-relative p-3 bg-blue" style="height: 180px">
+                    <div class="position-relative p-3 bg-soield" style="height: 180px">
                       <div class="ribbon-wrapper ribbon-xl">
-                        <div class="ribbon bg-success">
+                        <div class="ribbon bg-black">
                           RESPPNSABILTÉ
                         </div>
                       </div>
@@ -113,9 +109,9 @@
                     </div>
                   </div>
                   <div class="col-sm-4" id="text">
-                    <div class="position-relative p-3 bg-green" style="height: 180px">
+                    <div class="position-relative p-3 bg-soield" style="height: 180px">
                       <div class="ribbon-wrapper ribbon-xl">
-                        <div class="ribbon bg-warning">
+                        <div class="ribbon bg-black">
                            LE CÔTÉ SYMPATIQUE
                         </div>
                       </div>
@@ -126,9 +122,9 @@
                 </div>
                 <div class="row mt-4" >
                   <div class="col-sm-4" id="text">
-                    <div class="position-relative p-3 bg-blue" style="height: 180px">
+                    <div class="position-relative p-3 bg-soield" style="height: 180px">
                       <div class="ribbon-wrapper ribbon-xl">
-                        <div class="ribbon bg-success ">
+                        <div class="ribbon bg-black ">
                             La competence
                         </div>
                       </div>
@@ -138,9 +134,9 @@
                     </div>
                   </div>
                   <div class="col-sm-4" id="text">
-                    <div class="position-relative p-3 bg-green" style="height: 180px">
+                    <div class="position-relative p-3 bg-soield" style="height: 180px">
                       <div class="ribbon-wrapper ribbon-xl">
-                        <div class="ribbon bg-warning">
+                        <div class="ribbon bg-black">
                           Le courrage
                         </div>
                       </div>
@@ -148,10 +144,10 @@
                       <small style="font-weight: bold;">Votre envie de prendre des risques, d’accepter de relever les défis : <br> c’est aussi ce qui fera la différence. Les employeurs apprécient les collaborateurs <br>qui ont le courage de dire non seulement ce qui fonctionne bien, mais aussi <br> ce qui ne fonctionne pas de manière optimale.</small>
                     </div>
                   </div>
-                  <div class="col-sm-4" id="text">
-                    <div class="position-relative p-3 bg-blue" style="height: 180px">
+                  <div class="col-sm-4 bg-#f7f6f5" id="text">
+                    <div class="position-relative p-3 bg-soield" style="height: 180px">
                       <div class="ribbon-wrapper ribbon-xl">
-                        <div class="ribbon bg-success">
+                        <div class="ribbon bg-black">
                             L’intégrité
                         </div>
                       </div>
@@ -162,18 +158,18 @@
                 </div> <br>
                 <div>
                     <nav class="navbar navbar-expand-md">
-                     <div class="container-fluid" style=" background-color: #FF5E0E">
+                     <div class="container-fluid" style=" background-color: #f7f6f5">
                              <h2 class="float-center text-uppercase">Vous êtes en recherche d'emploi ? Découvrez toutes les offres disponibles sur notre site.</h2>
                       </div>
                     </nav>
-                </div> <br>
+                </div--> <br>
 
                 <div class="row  mt-6" >
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative">
-                      <img src="/imageSite2.webp" alt="Photo 1" class="img-fluid" style="height: 400px;">
-                      <div class="ribbon-wrapper ribbon-lg">
-                        <div class="ribbon bg-success text-lg">
+                      <img src="/imageSite2.webp" alt="Photo 1" class="img-fluid" style="height: 300px;">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-primary text-lg">
                          Nounous
                         </div>
                       </div>
@@ -218,9 +214,9 @@
                   </div>
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative">
-                      <img src="/conducteur.webp" alt="Photo 2" class="img-fluid" style="height: 400px;">
+                      <img src="/conducteur.webp" alt="Photo 2" class="img-fluid" style="height: 300px;">
                       <div class="ribbon-wrapper ribbon-xl">
-                        <div class="ribbon bg-warning text-lg">
+                        <div class="ribbon bg-primary text-lg">
                           Chauffeur
                         </div>
                       </div>
@@ -232,15 +228,15 @@
                           <i class="fas fa-heart fa-lg mr-2"></i>
                           Ajouter aux Favoris
                         </div>
-                      </div>
+                      </div><br>
                   </div>
                 </div>
                 <div class="row  mt-6" >
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative" style="min-height: 180px;">
-                      <img src="/ménagère.jpeg" alt="Photo 3" class="img-fluid" style="height: 400px; width: 990px;">
+                      <img src="/ménagère.jpeg" alt="Photo 3" class="img-fluid" style="height: 300px; width: 900px;">
                       <div class="ribbon-wrapper ribbon-xl">
-                        <div class="ribbon bg-danger text-xl">
+                        <div class="ribbon bg-primary text-lg">
                           Menage
                         </div>
                       </div>
@@ -257,9 +253,9 @@
                   </div>
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative">
-                      <img src="/cuisiniere.jpg" alt="Photo 1" class="img-fluid" style="height: 400px; width: 990px">
-                      <div class="ribbon-wrapper ribbon-lg">
-                        <div class="ribbon bg-success text-lg">
+                      <img src="/cuisiniere.jpg" alt="Photo 1" class="img-fluid" style="height: 300px; width: 900px">
+                      <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-primary text-lg">
                          Cuisine
                         </div>
                       </div>
