@@ -12,17 +12,17 @@
     <link rel="stylesheet" href="fontsPros/material-design-iconic-font/css/material-design-iconic-font.min.css">
     
     <!-- STYLE CSS -->
-    <style>
+    <!--style>
         .wrapper {
         min-height: 100vh;
         background: url("../images/bg-registration-form-7.jpg") no-repeat;
         background-size: cover; }
-    </style>
+    </style-->
 </head>
 
 <body class="">
 
-    <div class="container rounded-4 shadow-lg p-3 mb-5 bg-div">
+    <div class="container rounded-4 shadow-lg p-3 mb-5">
         <h1 class="text-center">Remplir ce formulaire pour terminer vôtre demande</h1>
         
         <form action="{{route('enregistrer.prospection.client')}}" method="POST">
@@ -40,48 +40,57 @@
                 @endif
             </div>
 
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Raison social</span>
-                <input type="text" name="raison_social" id="raison_social" class="form-control">
+            <div class="row">
+                <div class="col input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Raison social</span>
+                    <input type="text" name="raison_social" id="raison_social" class="form-control">
+                </div>
+                <br>
+                <div class="col input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Date<span class="text-danger required" aria-hidden="true">*</span></span>
+                    <input type="date" name="date_prospection" id="date_prospection" class="form-control">
+                </div>
             </div>
             <br>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Date<span class="text-danger required" aria-hidden="true">*</span></span>
-                <input type="date" name="date_prospection" id="date_prospection" class="form-control">
-            </div>
-            <br>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Canal<span class="text-danger required" aria-hidden="true">*</span></span>
-                <input type="text" id="canal" value="SITE WEB" name="canal" class="form-control">
-            </div>
             <div>
                 <input type="hidden" name="competence_rechercher" value="{{$agent->poste_candidate}}">
             </div>
-            <br>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Type de maison<span class="text-danger required" aria-hidden="true"></span></span>
-                <input type="text" id="type_maison" name="type_maison" class="form-control">
+            <div class="row">
+                <div class="col input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Canal<span class="text-danger required" aria-hidden="true">*</span></span>
+                    <input type="text" id="canal" value="SITE WEB" name="canal" class="form-control">
+                </div>
+                <br>
+                <div class="col input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Type de maison<span class="text-danger required" aria-hidden="true"></span></span>
+                    <input type="text" id="type_maison" name="type_maison" class="form-control">
+                </div>
             </div>
             <br>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Nombre de chambre<span class="text-danger required" aria-hidden="true"></span></span>
-                <input type="number" id="nbre_de_chambre" name="nbre_de_chambre" min="1" class="form-control">
+
+            <div class="row">
+                <div class="col input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Nombre de chambre<span class="text-danger required" aria-hidden="true"></span></span>
+                    <input type="number" id="nbre_de_chambre" name="nbre_de_chambre" min="1" class="form-control">
+                </div>
+                <div class="col input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Nombre de WC douche<span class="text-danger required" aria-hidden="true"></span></span>
+                    <input type="number" id="nbre_wc_douche" name="nbre_wc_douche" min="1" class="form-control">
+                </div>
             </div>
+            
             <br>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Nombre de WC douche<span class="text-danger required" aria-hidden="true"></span></span>
-                <input type="number" id="nbre_wc_douche" name="nbre_wc_douche" min="1" class="form-control">
+            <div class="row">
+                <div class="col input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Taille de la famille<span class="text-danger required" aria-hidden="true"></span></span>
+                    <input type="number" id="taille_famille" name="taille_famille" min="1" class="form-control">
+                </div>
+                <div class="col input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Budget<span class="text-danger required" aria-hidden="true">*</span></span>
+                    <input type="number" id="budget" name="budget" value="{{$agent->pretention_salarial}}" min="1" class="form-control">
+                </div>
             </div>
-            <br>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Taille de la famille<span class="text-danger required" aria-hidden="true"></span></span>
-                <input type="number" id="taille_famille" name="taille_famille" min="1" class="form-control">
-            </div>
-            <br>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">Budget<span class="text-danger required" aria-hidden="true">*</span></span>
-                <input type="number" id="budget" name="budget" value="{{$agent->pretention_salarial}}" min="1" class="form-control">
-            </div>
+            
             <br>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Information complémentaire<span class="text-danger required" aria-hidden="true"></span></span>
@@ -104,7 +113,7 @@
                 <input type="hidden" name="aboutissement" value="Attente">
             </div>
             <div>
-                <label for=""><strong class="underline">NB :</strong> Le symbole <span class="text-danger required" aria-hidden="true">*</span> signifie que ces champs sont obligatoire</label>
+                <label for=""><strong class="underline" style="color: brown">NB :</strong> Le symbole <span class="text-danger required" aria-hidden="true">*</span> signifie que ces champs sont obligatoire</label>
             </div>
             <br>
             <!--div class="form-floating">

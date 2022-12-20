@@ -7,11 +7,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -58,8 +53,11 @@
     button:hover {
     cursor:pointer;
     transform:scale(1.15);
+    }
 
-}
+    .border-raduis{
+      border-radius: 10px;
+    }
 </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -97,7 +95,7 @@
                 <div class="row  mt-6" >
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative">
-                      <img src="/imageSite2.webp" style="width: 910px; height: 345px;" alt="Photo 1" class="img-fluid">
+                      <img src="/imageSite2.webp" style="width: 910px; height: 345px;" alt="Photo 1" class="img-fluid border-raduis">
                       <div class="ribbon-wrapper ribbon-lg">
                         <div class="ribbon bg-success text-lg">
                           Nounous
@@ -111,13 +109,15 @@
                           @method('post')
                           <input type="hidden" name="service" value="NOUNOU">
       
-                          <button type="submit"  class="btn btn-primary btn-lg btn-flat" id="btnFin">
-                            <i class="fas fa-cart-plus fa-lg mr-2"></i>
-                            Passer la demande
-                          </button>
-                          <div class="btn btn-default btn-lg btn-flat">
-                            <i class="fas fa-heart fa-lg mr-2"></i>
-                            J'aime
+                          <div class="row g-0">
+                            <button type="submit" class="btn btn-primary btn-lg btn-flat col-sm-6 col-md-8" id="btnFin">
+                              <i class="fas fa-cart-plus fa-lg mr-2"></i>
+                              Passer la demande
+                            </button>
+                            <div class="btn btn-default btn-lg btn-flat col-6 col-md-4">
+                              <i class="fas fa-heart fa-lg mr-2"></i>
+                              J'aime
+                            </div>
                           </div>
                         </form>
 
@@ -126,7 +126,7 @@
                   </div>
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative">
-                      <img src="/conducteur.webp" style="width: 910px; height: 345px;" alt="Photo 2" class="img-fluid">
+                      <img src="/conducteur.webp" style="width: 910px; height: 345px;" alt="Photo 2" class="img-fluid border-raduis">
                       <div class="ribbon-wrapper ribbon-xl">
                         <div class="ribbon bg-warning text-lg">
                           Chauffeur
@@ -139,13 +139,15 @@
                         @method('post')
                         <input type="hidden" name="service" value="CHAUFFEUR">
     
-                        <button type="submit"  class="btn btn-primary btn-lg btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnFin">
-                          <i class="fas fa-cart-plus fa-lg mr-2"></i>
-                          Passer la demande
-                        </button>
-                        <div class="btn btn-default btn-lg btn-flat">
-                          <i class="fas fa-heart fa-lg mr-2"></i>
-                          J'aime
+                        <div class="row g-0">
+                          <button type="submit" class="btn btn-primary btn-lg btn-flat col-sm-6 col-md-8" id="btnFin">
+                            <i class="fas fa-cart-plus fa-lg mr-2"></i>
+                            Passer la demande
+                          </button>
+                          <div class="btn btn-default btn-lg btn-flat col-6 col-md-4">
+                            <i class="fas fa-heart fa-lg mr-2"></i>
+                            J'aime
+                          </div>
                         </div>
                       </form>
                     </div>
@@ -153,7 +155,7 @@
 
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative" style="min-height: 180px;">
-                      <img src="/imageSite1.webp" style="width: 910px; height: 345px;" alt="Photo 3" class="img-fluid">
+                      <img src="/imageSite1.webp" style="width: 910px; height: 345px;" alt="Photo 3" class="img-fluid border-raduis">
                       <div class="ribbon-wrapper ribbon-xl">
                         <div class="ribbon bg-danger text-xl">
                           Menage
@@ -166,21 +168,22 @@
                         @csrf
                         @method('post')
                         <input type="hidden" name="service" value="ENTRETIEN">
-                        <button type="submit"  class="btn btn-primary btn-lg btn-flat" id="btnFin">
-                          <i class="fas fa-cart-plus fa-lg mr-2"></i>
-                          Passer la demande
-                        </button>
-                
-                        <div class="btn btn-default btn-lg btn-flat">
-                          <i class="fas fa-heart fa-lg mr-2"></i>
-                          J'aime
+                        <div class="row g-0">
+                          <button type="submit" class="btn btn-primary btn-lg btn-flat col-sm-6 col-md-8" id="btnFin">
+                            <i class="fas fa-cart-plus fa-lg mr-2"></i>
+                            Passer la demande
+                          </button>
+                          <div class="btn btn-default btn-lg btn-flat col-6 col-md-4">
+                            <i class="fas fa-heart fa-lg mr-2"></i>
+                            J'aime
+                          </div>
                         </div>
                       </form>
                     </div>
                   </div>
                   <div class="col-sm-6" id="poste">
                     <div class="position-relative">
-                      <img src="/cuis3.jpeg" alt="Photo 1" class="img-fluid" style="width: 910px; height: 345px;">
+                      <img src="/cuis3.jpeg" alt="Photo 1" class="img-fluid border-raduis" style="width: 910px; height: 345px;">
                       <div class="ribbon-wrapper ribbon-lg">
                         <div class="ribbon bg-success text-lg">
                           Cuisine
@@ -191,14 +194,15 @@
                           @csrf
                           @method('post')
                           <input type="hidden" name="service" value="CUISINIER">
-                          <button type="button"  class="btn btn-primary btn-lg btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnFin">
-                            <i class="fas fa-cart-plus fa-lg mr-2"></i>
-                            Passer la demande
-                          </button>
-
-                          <div class="btn btn-default btn-lg btn-flat">
-                            <i class="fas fa-heart fa-lg mr-2"></i>
-                            J'aime
+                          <div class="row g-0">
+                            <button type="submit" class="btn btn-primary btn-lg btn-flat col-sm-6 col-md-8" id="btnFin">
+                              <i class="fas fa-cart-plus fa-lg mr-2"></i>
+                              Passer la demande
+                            </button>
+                            <div class="btn btn-default btn-lg btn-flat col-6 col-md-4">
+                              <i class="fas fa-heart fa-lg mr-2"></i>
+                              J'aime
+                            </div>
                           </div>
                         </form>
                       </div>
