@@ -22,10 +22,9 @@
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "sass": "^1.32.11"
-
     },
     "dependencies": {
-        "bootstrap-icons": "^1.9.1",
+        "bootstrap-icons": "^1.10.3",
         "mdb-ui-kit": "^4.4.0",
         "vit": "^0.0.1"
     }

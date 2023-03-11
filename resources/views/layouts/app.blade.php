@@ -50,6 +50,7 @@
                         {{-- config('app.name', 'Laravel') --}}
                         <img src="/Original_on_Transparent.png" alt="FADILA MÉNAGE" style="width: 150px; height: 38px;">
                     </a>
+                    <a href="#">Commencer</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -138,4 +139,20 @@
         </main>
     </div>
 </body>
+<footer class="footer mt-3 bg-black">
+    <div class="row text-center">
+      <div class="col-md-6">
+        <a href="">
+          Connexion
+        </a>
+        <a href="#">
+          Retour au sommet
+        </a>
+      </div>
+      <div class="col-md-6">
+        Compte
+      </div>
+    </div>
+    <p class="text-center">&copy; 2017–2022 Compagnie, Inc. &middot; <a href="#">Privé</a> &middot; <a href="#">Fadila ménage</a></p>
+</footer>
 </html>

@@ -7,9 +7,11 @@ use Illuminate\Database\Seeder;
 use App\Models\Personnel;
 use App\Models\Candidat;
 use App\Models\Agent;
+use App\Models\Secretaire;
 use App\Models\Client;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -168,12 +170,32 @@ class UserSeeder extends Seeder
          'frequence_souhaiter' => '5'
          ]);*/
 
-        User::create([
+        $user = User::create([
             'name' => 'Loukman',
             'email' => 'dg@fadilamenage.com',
             'password' => Hash::make('12345678'),
-            'role' => 'admin',
         ]);
+
+        $user->assignRole(Role::find(1));
+
+        /*$client = Client::create([
+            'nom' => 'Fare',
+            'tel' => 'Kpante',
+            'ville' => 'Sokodé',
+            'quartier' => 'Bamabodolo',
+            'email' => 'fare@gmail.com',
+            'type_service_rechercher' => 'NOUNOU',
+            'frequence_souhaiter' => '5'
+        ]);
+
+        $client->assignRole(Role::find(2));*/
+
+        $secretaire = User::create([
+            'name' => 'Audrey',
+            'email' => 'audrey@fadilamenage.com',
+            'password' => Hash::make('12345678'),
+        ]);
+        $secretaire->assignRole(Role::find(6));
 
     }
 }

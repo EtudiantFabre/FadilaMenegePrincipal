@@ -198,6 +198,7 @@ return [
 
         //SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         Stevebauman\Location\LocationServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
 

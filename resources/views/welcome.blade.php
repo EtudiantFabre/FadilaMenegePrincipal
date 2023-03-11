@@ -19,7 +19,7 @@
 
         <style>
             body {
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             }
         </style>
         <style>
@@ -83,32 +83,16 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarCollapse">
-                <!--ul class="navbar-nav me-auto mb-2 mb-md-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                  </li>
-                </ul-->
-                <!--form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form-->
-
-                <a class="container fixed-left" href="{{ route('chercher_emploi') }}" style="text-align: center; font-weight: bold; color:#FF5E0E; line-height: 50px;" id="comp-jd97w5lt3label">Se candidater pour gagner un emploie</a>
-                <a class="container fixed-center" href="#" style="text-align: left; color:#FF5E0E; font-weight: bold; line-height: 50px;" id="comp-jd97w5lt3label">Nos services</a>
+                <a class="container fixed-left" href="{{ route('chercher_emploi') }}" style="text-align: center; font-weight: bold; color:#000000; line-height: 50px;" id="comp-jd97w5lt3label">Postuler</a>
+                <a class="container fixed-left" href="#" style="text-align: left; color:#000000; font-weight: bold; line-height: 50px;" id="comp-jd97w5lt3label">Nos services</a>
 
                 @if (Route::has('login'))
                   <div class="hidden btn-toolbar fixed top-0 right-0 px-3 py-4 sm:block">
-                      <a class="text-sm text-gray-900 btn btn-warning underline dark:text-gray-500" href="{{route('offre')}}">Demander un service</a>
+                      <a class="text-sm text-gray-900 btn btn-app dark:text-gray-500" href="{{route('offre')}}">Demander un service</a>
                       @auth
                           <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 btn btn-info underline">Home</a>
                       @else
-                          <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 btn btn-info underline">Se connecter</a>
+                          <a href="{{ route('login') }}" class="text-sm text-gray-900 dark:text-gray-500 btn btn-app">Se connecter</a>
                       @endauth
                   </div>
                 @endif
@@ -241,45 +225,7 @@
           </div>
 
         </main>
-
-        <!--div class="row row-cols-2 row-cols-md-2 g-4" style="margin-top: auto; margin-bottom: auto;">
-          <div class="card mb-3 bg-warning " style="max-width: 999px;">
-            <div class="row g-1">
-              <div class="col-md-4">
-                <img src="logo.png" class="img-fluid rounded-start" alt="img">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mb-3 bg-warning " style="max-width: 999px;">
-            <div class="row g-1">
-              <div class="col-md-4">
-                <img src="logo.png" class="img-fluid rounded-start" alt="img">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div-->
-
-        <footer class="container">
-          <p class="float-end"><a href="#">Retour au sommet</a></p>
-          <p>&copy; 2017–2022 Compagnie, Inc. &middot; <a href="#">Privé</a> &middot; <a href="#">Fadila ménage</a></p>
-        </footer>
-
-    </body>
 </html>
+</body>
 
 @endsection
